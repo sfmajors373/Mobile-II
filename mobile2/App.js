@@ -7,18 +7,25 @@ import SignIn from './signIn';
 import Content from './Content';
 
 class Home extends React.Component {
+  static navigationOptions = {
+    title: 'Home Page'
+  }
   render() {
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <Text>Welcome to the Home Page!</Text>
         <Button
-          onPress={this.props.navigation.navigate('SignUp')}
           title="Sign Up"
           color="purple"
           accessibilityLabel="Sign up with this button"
+          onPress={() => {
+            this.props.navigation.navigate('SignUp');
+          }}
         />
         <Button
-          onPress={this.props.navigation.navigate('SignIn')}
+          onPress={() => {
+            this.props.navigation.navigate('SignIn');
+          }}
           title="Sign In"
           color="purple"
           accessibilityLabel="Sign in with this button"
@@ -40,8 +47,8 @@ const styles = StyleSheet.create({
 const Routes = StackNavigator({
   Home: { screen: Home },
   SignUp: { screen: SignUp },
-  // SignIn: { screen: SignIn },
-  // Content: { screen: Content },
+  SignIn: { screen: SignIn },
+  Content: { screen: Content },
 })
 
 export default Routes;

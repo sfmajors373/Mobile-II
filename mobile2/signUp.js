@@ -12,6 +12,9 @@ import Content from './Content';
 import SignIn from './signIn';
 
 export default class SignUp extends React.Component {
+  static navigationOptions = {
+    title: 'Sign Up Page'
+  }
   constructor(props) {
     super(props);
     this.state = {
