@@ -6,7 +6,7 @@ import SignUp from './signUp';
 import SignIn from './signIn';
 import Content from './Content';
 
-export default class App extends React.Component {
+class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -38,10 +38,10 @@ const styles = StyleSheet.create({
 });
 
 const Routes = StackNavigator({
-  Home: { screen: App },
+  Home: { screen: Home },
   SignUp: { screen: SignUp },
-  SignIn: { screen: SignIn },
-  Content: { screen: Content },
+  // SignIn: { screen: SignIn },
+  // Content: { screen: Content },
 })
 
 export default Routes;
