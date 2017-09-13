@@ -21,6 +21,23 @@ export default class SignUp extends React.Component {
       email: "",
       password: ""
     };
+    handleSubmit = this.handleFormSubmit.bind(this);
+  }
+  handleFormSubmit({email, password}) {
+    return (dispatch) => {
+      axios.post('https://mobile-server-ii.herokuapp.com/users', { email, password })
+        .then(() => {
+          dispatch({
+            type: 'USER_REGISTERED',
+          });
+          Async.setItem('token', response.data.token).then(() => {
+            this.props.navigate('Content');
+          });
+        })
+        .catch(() => {
+          dispatch('error');
+        });
+    };
   }
   render() {
     return (
@@ -37,6 +54,12 @@ export default class SignUp extends React.Component {
           onChangeText={(text) => this.setState({text})}
           value={this.state.password}
           placeholder="Password"
+        />
+        <Button
+          onPress={handleSubmit()}
+          title="Submit"
+          color="purple"
+          accessibilityLabel="Press button to submit email and password to sign up"
         />
       </View>
     );

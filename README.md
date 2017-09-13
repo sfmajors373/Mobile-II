@@ -1,4 +1,5 @@
 # Mobile II
+To launch Expo: Navigate to Downloads, run './xde*.AppImage'
 
 ## Topics
 
