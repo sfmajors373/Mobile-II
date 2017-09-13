@@ -5,10 +5,12 @@ import {
   Text,
   View,
   Button,
-  TextInput
+  TextInput,
+  AsyncStorage,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Content from './Content';
+import axios from 'axios';
 
 export default class SignIn extends React.Component {
   static navigationOptions = {
@@ -20,23 +22,19 @@ export default class SignIn extends React.Component {
       email: "",
       password: ""
     };
-    handleSubmit = this.handleFormSubmit.bind(this);
+    this.handleSubmit = this.handleFormSubmit.bind(this);
   }
-  handleFormSubmit((email, password) => {
-    return (dispatch) => {
-      axios.post('https://mobile-server-ii.herokuapp.com/signin', { email, password })
-        .then(() => {
-          dispatch({
-            type: 'USER_AUTHENTICATED',
-          });
-          AsyncStorage.setItem('token', response.data.token).then(() => {
-            this.props.navigate('Content');
-          });
-        })
-        .catch(() => {
-          dispatch('Incorrect email/password combination');
-        });
-    };
+  handleFormSubmit() {
+    axios.post('http://mobile-server-ii.herokuapp.com/users', {
+      email: this.state.email,
+      password: this.state.password,
+    }).then((response) => {
+      AsyncStorage.setItem('token', response.data.token).then(() => {
+        this.props.navigate('Content');
+      });
+    }).catch((error) => {
+      console.log(error);
+    });
   };
   render() {
     return (
@@ -55,7 +53,7 @@ export default class SignIn extends React.Component {
           placeholder="Password"
         />
         <Button
-          onPress={handleSubmit()}
+          onPress={this.handleSubmit}
           title="Sign In"
           color="purple"
           accessibilityLabel="Press button to submit login info"

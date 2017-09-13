@@ -5,9 +5,12 @@ import {
   Text,
   View,
   Button,
-  TextInput
+  TextInput,
+  AsyncStorage,
+  FlatList
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import axios from 'axios';
 
 export default class Content extends React.Component {
   static navigationOptions = {
@@ -28,13 +31,23 @@ export default class Content extends React.Component {
         }
       }).then((response) => {
         // update state here
+        this.setState({
+          users: response,
+        })
       });
     });
   }
 
   render() {
     return (
-      <Text>I am the contents page</Text>
+      <View>
+        <Text>I am the contents page</Text>
+        <FlatList
+          data={this.state.users}
+          renderItem={({ user }) => {
+            return <Text>{user.email}</Text>;
+          }) />
+      </View>
     );
   }
 }
