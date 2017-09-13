@@ -1,5 +1,6 @@
 # Mobile II
 To launch Expo: Navigate to Downloads, run './xde*.AppImage'
+For curl commands for this project, see [MixelPixel's github post](https://github.com/mixelpixel/curl)
 
 ## Topics
 
