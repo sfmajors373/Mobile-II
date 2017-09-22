@@ -49,6 +49,7 @@ export default class SignUp extends React.Component {
     return (
       <View>
         <Text>This is the sign up page.</Text>
+        <Text> {this.state.error && this.state.error.length ? this.state.error : null}</Text>
         <TextInput
           style={{height: 40, borderColor: 'gray', borderWidth: 1}}
           onChangeText={(email) => this.setState({ email })}

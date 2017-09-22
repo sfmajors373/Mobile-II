@@ -46,7 +46,8 @@ export default class Content extends React.Component {
           data={this.state.users}
           renderItem={({ user }) => {
             return <Text>{user.email}</Text>;
-          }) />
+          }}
+        />
       </View>
     );
   }
